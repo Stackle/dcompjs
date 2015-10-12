@@ -4,29 +4,43 @@ import request from 'request';
 class Page extends Component {
 	constructor(registry, props) {
 		super(registry, props);
+		this.state = 0;
 	}
 
 	componentId() {
 		return 'page';
 	}
 
-	staticMarkup() {
-		const cid = this.componentId();
-		return '<div id="' + cid +'">Loading page...</div>';
-	}
-
-	getData(done) {
+	getData(res) {
 		const self = this;
-		setTimeout(() => {
-			self.query = 'stackle';
-			done(null);
-		}, 2000);
+		if (self.state === 0) {
+			setTimeout(() => {
+				self.state = 1;
+				res.progress();
+			}, 1000);
+		}
+		if (self.state === 1) {
+			setTimeout(() => {
+				self.state = 2;
+				self.searchComponent1 = new DynamicSearch(self.registry, 'stackle');
+				self.searchComponent2 = new DynamicSearch(self.registry, 'facebook');
+				res.end();
+			}, 2000);
+		}
 	}
 
 	render() {
 		const cid = this.componentId();
-		const searchComponent = new DynamicSearch(this.registry, this.query);
-		return '<div id="' + cid + '">' + searchComponent.staticMarkup() + '</div>';
+
+		if (this.state === 0) {
+			return '<div id="' + cid +'">Loading page...</div>';
+		}
+		else if (this.state === 1) {
+			return '<div id="' + cid +'">Progress update...</div>';
+		}
+		else if (this.state === 2) {
+			return '<div id="' + cid + '">Search Component: ' + this.searchComponent1.render() + this.searchComponent2.render() + '</div>';
+		}
 	}
 }
 
@@ -36,30 +50,29 @@ class DynamicSearch extends Component {
 	}
 
 	componentId() {
-		return 'search';
+		return 'search-' + this.props;
 	}
 
-	staticMarkup() {
-		const cid = this.componentId();
-		return '<div id="' + cid +'">Searching...</div>';
-	}
-
-	getData(done) {
+	getData(cycle) {
 		const self = this;
 		const url = 'https://api.github.com/users/' + this.props + '/repos';
 		const headers = {
 			'User-Agent': 'mozilla'
 		};
 		request({url: url, headers: headers}, function(err, res, body) {
-			// console.log(err, res, body);
 			self.repos = JSON.parse(body);
-			done(null);
+			cycle.end();
 		});
 	}
 
 	render() {
 		const cid = this.componentId();
-		return '<div id="' + cid + '">First repo name:' + this.repos[0].name + '</div>';
+		if (!this.repos) {
+			return '<div id="' + cid +'">Searching...</div>';
+		}
+		else {
+			return '<div id="' + cid + '">First repo name of ' + this.props + ' is:' + this.repos[0].name + '</div>';	
+		}
 	}
 }
 
