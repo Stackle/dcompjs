@@ -1,5 +1,7 @@
 # Nestable Web Component with Progressive Rendering and SEO supported
 
+The current code is just a PoC to demonstrate the idea, do not take it as framework or library to use in production!
+
 ##Getting Started
 Clone this repo and run these commands:
 ```
@@ -12,7 +14,7 @@ Then visit <http://localhost:5000> and <http://localhost:5000/seo>
 ![demo](https://github.com/stackle/dcompjs/raw/master/demo.gif "Demo")
 
 
-##Goal
+##Goal of idea
   - Able to build modular and flexible web site by develop as web component
   - Support single flush (pure HTML), good for SEO
   - Lowest time to first paint
