@@ -9,6 +9,12 @@ class LifeCycle {
 		};
 	}
 
+	terminate() {
+		setImmediate(() => {
+			this.listener.afterEnd();
+		});
+	}
+
 	end() {
 		setImmediate(() => {
 			this.listener.end.forEach((fn) => fn());
@@ -120,7 +126,7 @@ class Component {
 	}
 
 	getData(res) {
-		res.end();
+		res.terminate();
 	}
 
 	render() {

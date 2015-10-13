@@ -68,10 +68,10 @@ class DynamicSearch extends Component {
 	render() {
 		const cid = this.componentId();
 		if (!this.repos) {
-			return '<div id="' + cid +'">Searching...</div>';
+			return '<div id="' + cid +'">Searching first github repo of ' + this.props + '...</div>';
 		}
 		else {
-			return '<div id="' + cid + '">First repo name of ' + this.props + ' is:' + this.repos[0].name + '</div>';	
+			return '<div id="' + cid + '">The first github repo\'s name of ' + this.props + ' is:' + this.repos[0].name + '</div>';	
 		}
 	}
 }
