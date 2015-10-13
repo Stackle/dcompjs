@@ -1,6 +1,6 @@
 # Nestable Web Component with Progressive Rendering and SEO supported
 
-The current code is just a PoC to demonstrate the idea, do not take it as framework or library to use in production!
+The current code is just a PoC to demonstrate the idea, do not take it as framework or library to use in production! and I'm not a native english speaker, some content may not well written but I will try to improve.
 
 ##Getting Started
 Clone this repo and run these commands:
