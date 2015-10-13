@@ -6,7 +6,11 @@ Clone this repo and run these commands:
 npm install
 npm start
 ```
-Then visit http://localhost:5000 and http://localhost:5000/seo
+Then visit <http://localhost:5000> and <http://localhost:5000/seo>
+
+##Demo
+![demo](https://github.com/stackle/dcompjs/raw/master/demo.gif "Demo")
+
 
 ##Goal
   - Able to build modular and flexible web site by develop as web component
