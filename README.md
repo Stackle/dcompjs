@@ -2,8 +2,10 @@
 
 ##Getting Started
 Clone this repo and run these commands:
-> `npm install`
-> `npm start`
+```
+npm install
+npm start
+```
 Then visit http://localhost:5000 and http://localhost:5000/seo
 
 ##Goal
@@ -23,6 +25,7 @@ Then visit http://localhost:5000 and http://localhost:5000/seo
  - Data fetching is a responsibility of the component itself
  - Data fetching should be able to execute in parallel
  - Do not strict with NodeJS -- you can use in any language
+ - Focus only the rendering part, not the business logic -- it should separate into API/micro service/SOA/What ever!
 
 ##Specification
  - The Component
